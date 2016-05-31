@@ -17,63 +17,37 @@ use yii\helpers\Html;
             <?php $sumPicker = Yii::$app->request->post('uahsum'); ?>
             <?php $codePicker = Yii::$app->request->post('select_code'); ?>
             <?php if (isset($sumPicker) && !empty($sumPicker)) : ?>
-                <?php if ($codePicker == 'UAH') : ?>
                 <div class="clearfix">
                     <div class="input-group">
                         <div class="input-group-btn">
                             <select name="select_code" style="height: 34px;" class="btn btn-default dropdown-toggle">
+                        <?php if ($codePicker == 'UAH') : ?>
                                 <option value="UAH" selected>UAH</option>
                                 <option value="EUR">EUR</option>
                                 <option value="USD">USD</option>
                                 <option value="RUB">RUB</option>
+                        <?php elseif ($codePicker == 'EUR') : ?>
+                                <option value="UAH">UAH</option>
+                                <option value="EUR"selected>EUR</option>
+                                <option value="USD">USD</option>
+                                <option value="RUB">RUB</option>
+                        <?php elseif ($codePicker == 'USD') : ?>
+                                <option value="UAH">UAH</option>
+                                <option value="EUR">EUR</option>
+                                <option value="USD" selected>USD</option>
+                                <option value="RUB">RUB</option>
+                        <?php elseif ($codePicker == 'RUB') : ?>
+                                <option value="UAH">UAH</option>
+                                <option value="EUR">EUR</option>
+                                <option value="USD">USD</option>
+                                <option value="RUB" selected>RUB</option>
+                        <?php endif; ?>
                             </select>
                         </div>
     <?= Html::input('raw', 'uahsum', $sumPicker, ['class'=> 'form-control', 'placeholder' => 'Ввидите сумму', 'pattern' => '(^\d+(?:[.]\d{1,2}|$)$)','required'=> true ]) ?>
                     </div>
                 </div>
-                    <?php elseif ($codePicker == 'EUR') : ?>
-                    <div class="clearfix">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <select name="select_code" style="height: 34px;" class="btn btn-default dropdown-toggle">
-                                    <option value="UAH">UAH</option>
-                                    <option value="EUR" selected>EUR</option>
-                                    <option value="USD">USD</option>
-                                    <option value="RUB">RUB</option>
-                                </select>
-                            </div>
-                            <?= Html::input('raw', 'uahsum', $sumPicker, ['class'=> 'form-control', 'placeholder' => 'Ввидите сумму', 'pattern' => '(^\d+(?:[.]\d{1,2}|$)$)','required'=> true ]) ?>
-                        </div>
-                    </div>
-                    <?php elseif ($codePicker == 'USD') : ?>
-                    <div class="clearfix">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <select name="select_code" style="height: 34px;" class="btn btn-default dropdown-toggle">
-                                    <option value="UAH">UAH</option>
-                                    <option value="EUR">EUR</option>
-                                    <option value="USD" selected>USD</option>
-                                    <option value="RUB">RUB</option>
-                                </select>
-                            </div>
-                            <?= Html::input('raw', 'uahsum', $sumPicker, ['class'=> 'form-control', 'placeholder' => 'Ввидите сумму', 'pattern' => '(^\d+(?:[.]\d{1,2}|$)$)','required'=> true ]) ?>
-                        </div>
-                    </div>
-                    <?php elseif ($codePicker == 'RUB') : ?>
-                    <div class="clearfix">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <select name="select_code" style="height: 34px;" class="btn btn-default dropdown-toggle">
-                                    <option value="UAH">UAH</option>
-                                    <option value="EUR">EUR</option>
-                                    <option value="USD">USD</option>
-                                    <option value="RUB" selected>RUB</option>
-                                </select>
-                            </div>
-                            <?= Html::input('raw', 'uahsum', $sumPicker, ['class'=> 'form-control', 'placeholder' => 'Ввидите сумму', 'pattern' => '(^\d+(?:[.]\d{1,2}|$)$)','required'=> true ]) ?>
-                        </div>
-                    </div>
-                    <?php endif; ?>
+
             <?php else : ?>
                 <div class="clearfix">
                     <div class="input-group">
@@ -100,13 +74,14 @@ use yii\helpers\Html;
 
         </div>
     </div>
-<?php
-/**
- * EUR checkbox
- */
-$checkCheckbox = Yii::$app->request->post('valcode');
-if (!empty($checkCheckbox)): ?>
-    <?php if (in_array('EUR', $checkCheckbox)) : ?>
+
+        <?php
+        /**
+         * EUR checkbox
+         */
+        $checkCheckbox = Yii::$app->request->post('valcode');
+        if (!empty($checkCheckbox)): ?>
+            <?php if (in_array('EUR', $checkCheckbox)) : ?>
     <div class="form-group">
         <div class="col-sm-offset-1">
             <div class="material-switch">
@@ -116,11 +91,11 @@ if (!empty($checkCheckbox)): ?>
             </div>
         </div>
     </div>
-<?php else : ?>
+        <?php else : ?>
         <div class="form-group">
             <div class="col-sm-offset-1">
                 <div class="material-switch">
-                    <input id="someSwitchOptionSuccess" name="valcode[]" type="checkbox" value="EUR" />
+                    <input id="someSwitchOptionSuccess" name="valcode[]" type="checkbox" value="EUR" disabled/>
                     <label for="someSwitchOptionSuccess" class="label-success"></label>
                     <span style="padding:5px;"><b>EUR</b></span>
                 </div>
@@ -234,7 +209,7 @@ if (!empty($checkCheckbox)): ?>
             <div class="form-group">
                 <div class="col-sm-offset-1 ">
                     <div class="material-switch">
-                        <input id="someSwitchOptionSuccess4" name="valcode[]" type="checkbox" value="UAH" />
+                        <input id="someSwitchOptionSuccess4" name="valcode[]" type="checkbox" value="UAH"  />
                         <label for="someSwitchOptionSuccess4" class="label-success"></label>
                         <span style="padding:5px;"><b>UAH</b></span>
                     </div>
@@ -271,7 +246,7 @@ if (!empty($checkCheckbox)): ?>
         <th>Наименование валюты</th>
         <th>Курс валюты</th>
         <th>Трехбуквенный код страны</th>
-        <th>Выбраная дата</th>
+        <th>Выбранная дата</th>
     </tr>
     </thead>
     <tbody>

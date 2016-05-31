@@ -13,8 +13,3 @@ $("#datepicker").datepicker({
 }).datepicker('setDate', '0');
 
 $('.your-checkbox').prop('indeterminate', true);
-
-
-$('.dropdown-menu a').on('click', function(){
-    $('.dropdown-toggle').html($(this).html() + '<span class="caret"></span>');
-})
