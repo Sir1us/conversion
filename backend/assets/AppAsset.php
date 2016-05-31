@@ -21,6 +21,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
         '//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css',
         'css/style.css',
+        '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
     ];
     public $js = [
         '//code.jquery.com/ui/1.11.4/jquery-ui.js',

@@ -9,5 +9,12 @@ $("#datepicker").datepicker({
         'Октябрь', 'Ноябрь', 'Декабрь'],
     dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
     firstDay: 1,
-    monthNamesShort: [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ],
+    monthNamesShort: [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ]
 }).datepicker('setDate', '0');
+
+$('.your-checkbox').prop('indeterminate', true);
+
+
+$('.dropdown-menu a').on('click', function(){
+    $('.dropdown-toggle').html($(this).html() + '<span class="caret"></span>');
+})

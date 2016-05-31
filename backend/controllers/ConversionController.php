@@ -11,13 +11,23 @@ class ConversionController extends \yii\web\Controller
     {
 
         $codeCountryValue = Yii::$app->request->post('valcode');
+        $PickedValue = Yii::$app->request->post('select_code');
         $date = Yii::$app->request->post('conversion_date');
         $postValueSum = Yii::$app->request->post('uahsum');
         $dateformat = str_replace("-", "", $date);
         $postValueFromLink = array();
+        $postChooseValue = array();
         $patternSum = '(^\d+(?:[.]\d{1,2}|$)$)';
         if (isset($dateformat) && !empty($dateformat) && date('Ymd', strtotime($dateformat)) && preg_match($patternSum, $postValueSum) &&
             $postValueSum && $dateformat > 0 && $postValueSum && $codeCountryValue !== null && !empty($codeCountryValue)) {
+
+            if ($PickedValue !== null && !empty($PickedValue)) {
+                $curl = curl_init();
+                curl_setopt($curl, CURLOPT_URL, 'http://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=' . $PickedValue . '&date=' . $dateformat . '&json');
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                $out = curl_exec($curl);
+                $postChooseValue[] = json_decode($out, true);
+            }
 
             foreach ($codeCountryValue as $code3words) {
 
@@ -28,8 +38,11 @@ class ConversionController extends \yii\web\Controller
                     $postValueFromLink[] = json_decode($out, true);
             }
 
+
+
             return $this->render('index', [
                 'postValueFromLink' => $postValueFromLink,
+                'postChooseValue' => $postChooseValue,
             ]);
         }
 
