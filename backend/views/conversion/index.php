@@ -12,7 +12,7 @@ use yii\helpers\Html;
     <div class="item panel panel-default" style="padding: 10px; background: ">
     <div class="form-group">
         <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-        <label for="inputEmail3" class=" control-label">Сумма в Гривне</label>
+        <label class="control-label">Сумма</label>
         <div>
             <?php $sumPicker = Yii::$app->request->post('uahsum'); ?>
             <?php $codePicker = Yii::$app->request->post('select_code'); ?>
@@ -20,7 +20,7 @@ use yii\helpers\Html;
                 <div class="clearfix">
                     <div class="input-group">
                         <div class="input-group-btn">
-                            <select name="select_code" style="height: 34px;" class="btn btn-default dropdown-toggle">
+                            <select name="select_code" style="height: 34px;" class="btn btn-default dropdown-toggle" title="">
                         <?php if ($codePicker == 'UAH') : ?>
                                 <option value="UAH" selected>UAH</option>
                                 <option value="EUR">EUR</option>
@@ -28,7 +28,7 @@ use yii\helpers\Html;
                                 <option value="RUB">RUB</option>
                         <?php elseif ($codePicker == 'EUR') : ?>
                                 <option value="UAH">UAH</option>
-                                <option value="EUR"selected>EUR</option>
+                                <option value="EUR" selected>EUR</option>
                                 <option value="USD">USD</option>
                                 <option value="RUB">RUB</option>
                         <?php elseif ($codePicker == 'USD') : ?>
@@ -52,7 +52,7 @@ use yii\helpers\Html;
                 <div class="clearfix">
                     <div class="input-group">
                         <div class="input-group-btn">
-                            <select name="select_code" style="height: 34px;" class="btn btn-default dropdown-toggle">
+                            <select name="select_code" style="height: 34px;" class="btn btn-default dropdown-toggle" title="">
                                 <option value="UAH" selected>UAH</option>
                                 <option value="EUR">EUR</option>
                                 <option value="USD">USD</option>
@@ -66,15 +66,15 @@ use yii\helpers\Html;
         </div>
     </div>
 
-
     <div class="form-group">
-        <label for="inputPassword3" class="control-label">Дата</label>
+        <label class="control-label">Дата</label>
         <div class="">
             <?= Html::input('raw', 'conversion_date', null, ['class'=> 'form-control', 'id' => 'datepicker', 'pattern' => '(^(((\d\d)(([02468][048])|([13579][26]))-02-29)|(((\d\d)(\d\d)))-((((0\d)|(1[0-2]))-((0\d)|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))$)']) ?>
 
         </div>
     </div>
-
+        <label style="margin-bottom: 20px;" class="control-label">Доступная валюта для выбора</label>
+        <br />
         <?php
         /**
          * EUR checkbox
