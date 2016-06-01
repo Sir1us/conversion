@@ -17,7 +17,7 @@ class ConversionController extends \yii\web\Controller
         $dateformat = str_replace("-", "", $date);
         $postValueFromLink = array();
         $postChooseValue = array();
-        $patternSum = '(^\d+(?:[.]\d{1,2}|$)$)';
+        $patternSum = '(^\d+(?:[.]\d{1,100}|$)$)';
         if (isset($dateformat) && !empty($dateformat) && date('Ymd', strtotime($dateformat)) && preg_match($patternSum, $postValueSum) &&
             $postValueSum && $dateformat > 0 && $postValueSum && $codeCountryValue !== null && !empty($codeCountryValue)) {
 

@@ -19,6 +19,7 @@ use yii\helpers\Html;
             <?php if (isset($sumPicker) && !empty($sumPicker)) : ?>
                 <div class="clearfix">
                     <div class="input-group">
+                        <?= Html::input('raw', 'uahsum', $sumPicker, ['class'=> 'form-control', 'placeholder' => 'Ввидите сумму', 'pattern' => '(^\d+(?:[.]\d{1,100}|$)$)','required'=> true ]) ?>
                         <div class="input-group-btn">
                             <select name="select_code" style="height: 34px;" class="btn btn-default dropdown-toggle" title="">
                         <?php if ($codePicker == 'UAH') : ?>
@@ -44,13 +45,13 @@ use yii\helpers\Html;
                         <?php endif; ?>
                             </select>
                         </div>
-    <?= Html::input('raw', 'uahsum', $sumPicker, ['class'=> 'form-control', 'placeholder' => 'Ввидите сумму', 'pattern' => '(^\d+(?:[.]\d{1,2}|$)$)','required'=> true ]) ?>
                     </div>
                 </div>
 
             <?php else : ?>
                 <div class="clearfix">
                     <div class="input-group">
+                        <?= Html::input('raw', 'uahsum', null, ['class'=> 'form-control', 'placeholder' => 'Ввидите сумму', 'pattern' => '(^\d+(?:[.]\d{1,100}|$)$)', 'max' => '30', 'required'=> true]) ?>
                         <div class="input-group-btn">
                             <select name="select_code" style="height: 34px;" class="btn btn-default dropdown-toggle" title="">
                                 <option value="UAH" selected>UAH</option>
@@ -59,7 +60,6 @@ use yii\helpers\Html;
                                 <option value="RUB">RUB</option>
                             </select>
                         </div>
-    <?= Html::input('raw', 'uahsum', null, ['class'=> 'form-control', 'placeholder' => 'Ввидите сумму', 'pattern' => '(^\d+(?:[.]\d{1,2}|$)$)', 'max' => '30', 'required'=> true]) ?>
                     </div>
                 </div>
             <?php endif; ?>
@@ -95,7 +95,7 @@ use yii\helpers\Html;
         <div class="form-group">
             <div class="col-sm-offset-1">
                 <div class="material-switch">
-                    <input id="someSwitchOptionSuccess" name="valcode[]" type="checkbox" value="EUR" disabled/>
+                    <input id="someSwitchOptionSuccess" name="valcode[]" type="checkbox" value="EUR"/>
                     <label for="someSwitchOptionSuccess" class="label-success"></label>
                     <span style="padding:5px;"><b>EUR</b></span>
                 </div>
@@ -256,7 +256,7 @@ use yii\helpers\Html;
         foreach ($postChooseValue as $ChooseValueRate) {
         $resultSum = $sumPicker / $ValueFromLinkForAll[0]['rate'] * $ChooseValueRate[0]['rate'];
         $rate = $ValueFromLinkForAll[0]['rate'] / $ChooseValueRate[0]['rate'];
-        $finalSum = sprintf("%f",$resultSum);?>
+        $finalSum = round((sprintf("%f",$resultSum)), 3);?>
         <tr>
             <td><?= $sumPicker .' '. $ChooseValueRate[0]['cc']?></td>
             <td><?= $finalSum ?></td>
